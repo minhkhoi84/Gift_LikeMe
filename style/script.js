@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ⭐ THAY ĐỔI LINK NHẠC YOUTUBE TẠI ĐÂY ⭐
+  const YOUTUBE_VIDEO_ID = '9nKncN5SMmM';  // Chỉ cần thay VIDEO_ID này
+  const START_TIME = 0;  // Thời điểm bắt đầu phát (giây)
+  // Cách lấy: Từ link https://www.youtube.com/watch?v=VIDEO_ID → Lấy phần sau watch?v=
+  
   const gif = document.getElementById('gif');
   const question = document.getElementById('question');
   const noBtn = document.getElementById('noBtn');
@@ -7,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const sound2 = document.getElementById('bg-music2');
   const sound3 = document.getElementById('bg-music3');
   const sound4 = document.getElementById('bg-music4');
+  
+  // Khởi tạo YouTube iframe
+  if (sound4) {
+    sound4.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=0&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0`;
+  }
 
   function safePlay(audio) {
     if (!audio) return;
@@ -68,14 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (yesBtn) {
     yesBtn.addEventListener('click', () => {
-      question.textContent = 'Anh biết mà! Anh cũng thích em nhiều lắm ❤️';
+      question.textContent = 'Anh biết mà! Anh cũng thích Giang nhiều lắm ❤️';
       gif.src = 'https://i.pinimg.com/originals/7e/f6/9c/7ef69cd0a6b0b78526c8ce983b3296fc.gif';
       noBtn.style.display = 'none';
       yesBtn.style.display = 'none';
       explodeHearts();
       if (sound4) {
-        sound4.currentTime = 103.5;
-        safePlay(sound4);
+        // Kích hoạt YouTube player với autoplay
+        sound4.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&start=${START_TIME}&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0`;
       }
     });
   }
